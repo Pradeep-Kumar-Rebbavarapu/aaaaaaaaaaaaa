@@ -14,12 +14,12 @@ import Typography from '@mui/material/Typography';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
-export default function index({ notes }) {
+export default function Index({ notes }) {
   let { authtoken } = useContext(Context)
   const theme = useTheme();
   return (
     <div>
-      {authtoken}
+      
       {notes.map((note) => {
         return (
           <div key={note.note_id}>
@@ -27,7 +27,7 @@ export default function index({ notes }) {
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>
                   <Typography component="div" variant="h5">
-                    Live From Space
+                    {note.title}
                   </Typography>
                   <Typography variant="subtitle1" color="text.secondary" component="div">
                     Mac Miller
@@ -48,7 +48,7 @@ export default function index({ notes }) {
               <CardMedia
                 component="img"
                 sx={{ width: 151 }}
-                image="/static/images/cards/live-from-space.jpg"
+                image=""
                 alt="Live from space album cover"
               />
             </Card>
@@ -65,10 +65,8 @@ export default function index({ notes }) {
 
 export async function getServerSideProps({ req, res }) {
   var cookie = require('cookie');
-  console.log(req.headers);
+  
   var cookies = cookie.parse(req.headers.cookie || '');
-  console.log('cookies', cookies);
-  console.log('server side props');
   const response = await fetch('https://my-notebook-my-notebook.herokuapp.com/api/v1/GetUserNotes/', {
     method: 'GET',
     headers: {
@@ -77,7 +75,7 @@ export async function getServerSideProps({ req, res }) {
     }
   })
   let data = await response.json()
-  console.log(data);
+  
   return {
     props: {
       notes: data,

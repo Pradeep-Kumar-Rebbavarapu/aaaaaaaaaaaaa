@@ -1,9 +1,9 @@
 import { ToastContainer, toast } from 'react-toastify';
 import cookie from 'cookie'
 
-export default async function (req,res){
+export default async function login(req,res){
   const { username, password,email } = req.body;
-  console.log(res)
+  
     try {
       
       console.log('res inside',res);

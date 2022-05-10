@@ -100,11 +100,7 @@ const SignupPage = () => {
 
   }
   // Gansgta@11519
-  useEffect(()=>{
-    if(loading){
-      return <h1>Loading...</h1>
-    }
-  },[])
+  
   return (
     <div style={{ 'backgroundImage': `url(${Signup1.src})` }} className=' bg-center bg-no-repeat bg-cover'>
 
